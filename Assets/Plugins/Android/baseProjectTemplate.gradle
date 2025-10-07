@@ -1,0 +1,24 @@
+// --- must be before plugins{} ---
+buildscript {
+    repositories { google(); mavenCentral() }
+    dependencies {
+        // Kotlin plugin (Unity/AGP 8.7.2와 호환)
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.24"
+    }
+}
+// ---------------------------------
+
+plugins {
+    // Unity 6000.0.48f1 기본 Gradle/AGP와 호환
+    id 'com.android.application' version '8.7.2' apply false
+    id 'com.android.library'    version '8.7.2' apply false
+    **BUILD_SCRIPT_DEPS**
+}
+
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
+}
+
+allprojects {
+    repositories { google(); mavenCentral() }
+}
